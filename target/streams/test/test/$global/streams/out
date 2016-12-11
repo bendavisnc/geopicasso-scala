@@ -1,5 +1,13 @@
-[0m[[0mdebug[0m] [0mRunning TaskDef(geopicasso.ConfigTests, specs2 Specification fingerprint, false, [SuiteSelector])[0m
-[0m[[0mdebug[0m] [0mSummary for specs2 not available.[0m
-[0m[[0minfo[0m] [0mPassed: Total 2, Failed 0, Errors 0, Passed 2[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(geopicasso.GeopicassoTests, org.scalajs.testadapter.FingerprintSerializers$DeserializedSubclassFingerprint@4fe85efd, false, [SuiteSelector])[0m
+[0m[[0minfo[0m] [0m-----------------------------------Results-----------------------------------[0m
+[0m[[0minfo[0m] [0mgeopicasso.GeopicassoTests		[32mSuccess[0m[0m
+[0m[[0minfo[0m] [0m    unitShapes		[32mSuccess [0m
+[0m[[0minfo[0m] [0m              [32m26[0m[0m
+[0m[[0minfo[0m] [0m    d3scale		[32mSuccess [0m
+[0m[[0minfo[0m] [0m           [32m600[0m[0m
+[0m[[0minfo[0m] [0m[0m
+[0m[[0minfo[0m] [0mTests: 3[0m
+[0m[[0minfo[0m] [0mPassed: 3[0m
+[0m[[0minfo[0m] [0mFailed: 0[0m
 [0m[[0mdebug[0m] [0mPassed tests:[0m
-[0m[[0mdebug[0m] [0m	geopicasso.ConfigTests[0m
+[0m[[0mdebug[0m] [0m	geopicasso.GeopicassoTests[0m
