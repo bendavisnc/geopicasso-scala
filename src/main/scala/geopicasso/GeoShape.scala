@@ -1,7 +1,9 @@
 package geopicasso
 
-import org.scalajs.dom
-import org.singlespaced.d3js.{Selection, d3}
+import scalatags.Text.{svgAttrs, TypedTag}
+import scalatags.Text.svgTags.{svg, rect, circle}
+import scalatags.Text.implicits._
+import scalatags.Text.svgAttrs.{width, height, x, y, cx, cy, r, fill, stroke}
 
 sealed abstract class GeoShape {
 	def cx: Double
@@ -10,26 +12,28 @@ sealed abstract class GeoShape {
 
 	def copy(cx: Double = this.cx, cy: Double = this.cy, r: Double = this.r): GeoShape
 
-	def addToDoc(doc: Selection[dom.EventTarget]): Selection[dom.EventTarget]
+	def toSvgElem(config: Config): TypedTag[String]
+
 }
 
 class Circle(val cx: Double, val cy: Double, val r: Double) extends GeoShape {
 
-	override def addToDoc(doc: Selection[dom.EventTarget]): Selection[dom.EventTarget] = {
-		println(this)
-		doc
-			.append("circle")
-			.attr("id", this.toString)
-			.attr("cx", cx)
-			.attr("cy", cy)
-			.attr("r", r)
-			.style("stroke", "white") // todo
-			.style("stroke-width", "0.2") // todo
-			.style("fill-opacity", 0) // todo
-	}
 
 	def copy(cx: Double = this.cx, cy: Double = this.cy, r: Double = this.r): Circle = {
 		Circle(cx, cy, r)
+	}
+
+	override def toSvgElem(config: Config): TypedTag[String] = {
+		val strokeWidth = Math.max(0.05, config.r * config.n * 0.0005)
+		circle(
+			svgAttrs.id := this.toString,
+			svgAttrs.cx := cx,
+			svgAttrs.cy := cy,
+			svgAttrs.r := r,
+			svgAttrs.fillOpacity := 0,
+			svgAttrs.stroke := "white",
+			svgAttrs.strokeWidth := strokeWidth
+			)
 	}
 
 }

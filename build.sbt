@@ -1,4 +1,3 @@
-enablePlugins(ScalaJSPlugin)
 
 name := "geopicasso"
 
@@ -8,12 +7,14 @@ scalaVersion := "2.11.8"
 
 
 libraryDependencies ++= Seq(
-	"com.lihaoyi" %%% "utest" % "0.4.3" % "test",
-	"org.singlespaced" %%% "scalajs-d3" % "0.3.3",
-	"org.scala-js" %%% "scalajs-dom" % "0.9.0"
+	"com.lihaoyi" %% "utest" % "0.4.3" % "test",
+	"org.json" % "json" % "20140107",
+	"com.lihaoyi" %% "scalatags" % "0.6.1",
+	"commons-io" % "commons-io" % "2.5"
+
 )
 
 testFrameworks += new TestFramework("utest.runner.Framework")
 
-
+mainClass in (Compile, run) := Some("geopicasso.Geopicasso")
 

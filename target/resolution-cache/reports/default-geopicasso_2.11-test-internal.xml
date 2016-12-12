@@ -7,293 +7,84 @@
 		revision="0.0.1"
 		conf="test-internal"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
-		date="20161207173806"/>
+		date="20161212164624"/>
 	<dependencies>
-		<module organisation="org.specs2" name="specs2-core_2.11">
-			<revision name="3.8.3" status="release" pubdate="20160519041008" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://specs2.org/" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="13">
-				<license name="MIT-style" url="http://www.opensource.org/licenses/mit-license.php"/>
-				<metadata-artifact status="no" details="" size="3286" time="0" location="/home/ben/.ivy2/cache/org.specs2/specs2-core_2.11/ivy-3.8.3.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/specs2/specs2-core_2.11/3.8.3/specs2-core_2.11-3.8.3.pom"/>
-				<caller organisation="default" name="geopicasso_2.11" conf="test-internal, test, optional, compile, provided, runtime" rev="3.8.3" rev-constraint-default="3.8.3" rev-constraint-dynamic="3.8.3" callerrev="0.0.1"/>
+		<module organisation="com.lihaoyi" name="utest_2.11">
+			<revision name="0.4.3" status="release" pubdate="20160312004026" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/lihaoyi/utest" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="5">
+				<license name="MIT license" url="http://www.opensource.org/licenses/mit-license.php"/>
+				<metadata-artifact status="no" details="" size="3089" time="0" location="/home/ben/.ivy2/cache/com.lihaoyi/utest_2.11/ivy-0.4.3.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/lihaoyi/utest_2.11/0.4.3/utest_2.11-0.4.3.pom"/>
+				<caller organisation="default" name="geopicasso_2.11" conf="test, compile, provided, test-internal, runtime, optional" rev="0.4.3" rev-constraint-default="0.4.3" rev-constraint-dynamic="0.4.3" callerrev="0.0.1"/>
 				<artifacts>
-					<artifact name="specs2-core_2.11" type="jar" ext="jar" status="no" details="" size="2102614" time="0" location="/home/ben/.ivy2/cache/org.specs2/specs2-core_2.11/jars/specs2-core_2.11-3.8.3.jar">
-						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/specs2/specs2-core_2.11/3.8.3/specs2-core_2.11-3.8.3.jar"/>
+					<artifact name="utest_2.11" type="jar" ext="jar" status="no" details="" size="291683" time="0" location="/home/ben/.ivy2/cache/com.lihaoyi/utest_2.11/jars/utest_2.11-0.4.3.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/lihaoyi/utest_2.11/0.4.3/utest_2.11-0.4.3.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
 		</module>
-		<module organisation="org.specs2" name="specs2-matcher_2.11">
-			<revision name="3.8.3" status="release" pubdate="20160519040939" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://specs2.org/" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="14">
-				<license name="MIT-style" url="http://www.opensource.org/licenses/mit-license.php"/>
-				<metadata-artifact status="no" details="" size="2674" time="0" location="/home/ben/.ivy2/cache/org.specs2/specs2-matcher_2.11/ivy-3.8.3.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/specs2/specs2-matcher_2.11/3.8.3/specs2-matcher_2.11-3.8.3.pom"/>
-				<caller organisation="org.specs2" name="specs2-core_2.11" conf="default, compile, runtime, master" rev="3.8.3" rev-constraint-default="3.8.3" rev-constraint-dynamic="3.8.3" callerrev="3.8.3"/>
+		<module organisation="org.scala-sbt" name="test-interface">
+			<revision name="1.0" status="release" pubdate="20130628184435" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-sbt.org" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="7">
+				<license name="BSD" url="https://github.com/sbt/test-interface/blob/master/LICENSE"/>
+				<metadata-artifact status="no" details="" size="2589" time="0" location="/home/ben/.ivy2/cache/org.scala-sbt/test-interface/ivy-1.0.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/scala-sbt/test-interface/1.0/test-interface-1.0.pom"/>
+				<caller organisation="com.lihaoyi" name="utest_2.11" conf="default, compile, runtime, master" rev="1.0" rev-constraint-default="1.0" rev-constraint-dynamic="1.0" callerrev="0.4.3"/>
 				<artifacts>
-					<artifact name="specs2-matcher_2.11" type="jar" ext="jar" status="no" details="" size="2989385" time="0" location="/home/ben/.ivy2/cache/org.specs2/specs2-matcher_2.11/jars/specs2-matcher_2.11-3.8.3.jar">
-						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/specs2/specs2-matcher_2.11/3.8.3/specs2-matcher_2.11-3.8.3.jar"/>
-					</artifact>
-				</artifacts>
-			</revision>
-		</module>
-		<module organisation="org.specs2" name="specs2-common_2.11">
-			<revision name="3.8.3" status="release" pubdate="20160519040957" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://specs2.org/" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="15">
-				<license name="MIT-style" url="http://www.opensource.org/licenses/mit-license.php"/>
-				<metadata-artifact status="no" details="" size="3712" time="0" location="/home/ben/.ivy2/cache/org.specs2/specs2-common_2.11/ivy-3.8.3.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/specs2/specs2-common_2.11/3.8.3/specs2-common_2.11-3.8.3.pom"/>
-				<caller organisation="org.specs2" name="specs2-matcher_2.11" conf="compile, runtime" rev="3.8.3" rev-constraint-default="3.8.3" rev-constraint-dynamic="3.8.3" callerrev="3.8.3"/>
-				<artifacts>
-					<artifact name="specs2-common_2.11" type="jar" ext="jar" status="no" details="" size="2563092" time="0" location="/home/ben/.ivy2/cache/org.specs2/specs2-common_2.11/jars/specs2-common_2.11-3.8.3.jar">
-						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/specs2/specs2-common_2.11/3.8.3/specs2-common_2.11-3.8.3.jar"/>
-					</artifact>
-				</artifacts>
-			</revision>
-		</module>
-		<module organisation="org.scala-lang.modules" name="scala-xml_2.11">
-			<revision name="1.0.5" status="release" pubdate="20150724151224" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="22">
-				<license name="BSD 3-clause" url="http://opensource.org/licenses/BSD-3-Clause"/>
-				<metadata-artifact status="no" details="" size="3011" time="0" location="/home/ben/.ivy2/cache/org.scala-lang.modules/scala-xml_2.11/ivy-1.0.5.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.11/1.0.5/scala-xml_2.11-1.0.5.pom"/>
-				<caller organisation="org.specs2" name="specs2-common_2.11" conf="compile, runtime" rev="1.0.5" rev-constraint-default="1.0.5" rev-constraint-dynamic="1.0.5" callerrev="3.8.3"/>
-				<artifacts>
-					<artifact name="scala-xml_2.11" type="bundle" ext="jar" status="no" details="" size="671138" time="0" location="/home/ben/.ivy2/cache/org.scala-lang.modules/scala-xml_2.11/bundles/scala-xml_2.11-1.0.5.jar">
-						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.11/1.0.5/scala-xml_2.11-1.0.5.jar"/>
-					</artifact>
-				</artifacts>
-			</revision>
-		</module>
-		<module organisation="org.scala-lang.modules" name="scala-parser-combinators_2.11">
-			<revision name="1.0.4" status="release" pubdate="20150430100747" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="21">
-				<license name="BSD 3-clause" url="http://opensource.org/licenses/BSD-3-Clause"/>
-				<metadata-artifact status="no" details="" size="2803" time="0" location="/home/ben/.ivy2/cache/org.scala-lang.modules/scala-parser-combinators_2.11/ivy-1.0.4.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/scala-lang/modules/scala-parser-combinators_2.11/1.0.4/scala-parser-combinators_2.11-1.0.4.pom"/>
-				<caller organisation="org.specs2" name="specs2-common_2.11" conf="compile, runtime" rev="1.0.4" rev-constraint-default="1.0.4" rev-constraint-dynamic="1.0.4" callerrev="3.8.3"/>
-				<artifacts>
-					<artifact name="scala-parser-combinators_2.11" type="bundle" ext="jar" status="no" details="" size="423753" time="0" location="/home/ben/.ivy2/cache/org.scala-lang.modules/scala-parser-combinators_2.11/bundles/scala-parser-combinators_2.11-1.0.4.jar">
-						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/scala-lang/modules/scala-parser-combinators_2.11/1.0.4/scala-parser-combinators_2.11-1.0.4.jar"/>
+					<artifact name="test-interface" type="jar" ext="jar" status="no" details="" size="14755" time="0" location="/home/ben/.ivy2/cache/org.scala-sbt/test-interface/jars/test-interface-1.0.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/scala-sbt/test-interface/1.0/test-interface-1.0.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
 		</module>
 		<module organisation="org.scala-lang" name="scala-reflect">
-			<revision name="2.11.8" status="release" pubdate="20160308231602" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" extra-info.apiURL="http://www.scala-lang.org/api/2.11.8/" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="20">
+			<revision name="2.11.4" status="release" pubdate="20141023113505" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" extra-info.apiURL="http://www.scala-lang.org/api/2.11.4/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="6">
 				<license name="BSD 3-Clause" url="http://www.scala-lang.org/license.html"/>
-				<metadata-artifact status="no" details="" size="2825" time="0" location="/home/ben/.ivy2/cache/org.scala-lang/scala-reflect/ivy-2.11.8.xml" searched="false" origin-is-local="false" origin-location="https://jcenter.bintray.com/org/scala-lang/scala-reflect/2.11.8/scala-reflect-2.11.8.pom"/>
-				<caller organisation="org.specs2" name="specs2-core_2.11" conf="default, compile, runtime, master" rev="2.11.8" rev-constraint-default="2.11.8" rev-constraint-dynamic="2.11.8" callerrev="3.8.3"/>
-				<caller organisation="org.specs2" name="specs2-common_2.11" conf="compile, runtime" rev="2.11.8" rev-constraint-default="2.11.8" rev-constraint-dynamic="2.11.8" callerrev="3.8.3"/>
+				<metadata-artifact status="no" details="" size="2825" time="0" location="/home/ben/.ivy2/cache/org.scala-lang/scala-reflect/ivy-2.11.4.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.11.4/scala-reflect-2.11.4.pom"/>
+				<caller organisation="com.lihaoyi" name="utest_2.11" conf="default, compile, runtime, master" rev="2.11.4" rev-constraint-default="2.11.4" rev-constraint-dynamic="2.11.4" callerrev="0.4.3"/>
 				<artifacts>
-					<artifact name="scala-reflect" type="jar" ext="jar" status="no" details="" size="4573750" time="0" location="/home/ben/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.11.8.jar">
-						<origin-location is-local="false" location="https://jcenter.bintray.com/org/scala-lang/scala-reflect/2.11.8/scala-reflect-2.11.8.jar"/>
+					<artifact name="scala-reflect" type="jar" ext="jar" status="no" details="" size="4387959" time="0" location="/home/ben/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.11.4.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.11.4/scala-reflect-2.11.4.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
 		</module>
-		<module organisation="org.specs2" name="specs2-codata_2.11">
-			<revision name="3.8.3" status="release" pubdate="20160519040909" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://specs2.org/" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="16">
-				<license name="MIT-style" url="http://www.opensource.org/licenses/mit-license.php"/>
-				<metadata-artifact status="no" details="" size="2967" time="0" location="/home/ben/.ivy2/cache/org.specs2/specs2-codata_2.11/ivy-3.8.3.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/specs2/specs2-codata_2.11/3.8.3/specs2-codata_2.11-3.8.3.pom"/>
-				<caller organisation="org.specs2" name="specs2-common_2.11" conf="compile, runtime" rev="3.8.3" rev-constraint-default="3.8.3" rev-constraint-dynamic="3.8.3" callerrev="3.8.3"/>
+		<module organisation="commons-io" name="commons-io">
+			<revision name="2.5" status="release" pubdate="20160422105236" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://commons.apache.org/proper/commons-io/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="4">
+				<metadata-artifact status="no" details="" size="11354" time="0" location="/home/ben/.ivy2/cache/commons-io/commons-io/ivy-2.5.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/commons-io/commons-io/2.5/commons-io-2.5.pom"/>
+				<caller organisation="default" name="geopicasso_2.11" conf="test, compile, provided, test-internal, runtime, optional" rev="2.5" rev-constraint-default="2.5" rev-constraint-dynamic="2.5" callerrev="0.0.1"/>
 				<artifacts>
-					<artifact name="specs2-codata_2.11" type="jar" ext="jar" status="no" details="" size="1231790" time="0" location="/home/ben/.ivy2/cache/org.specs2/specs2-codata_2.11/jars/specs2-codata_2.11-3.8.3.jar">
-						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/specs2/specs2-codata_2.11/3.8.3/specs2-codata_2.11-3.8.3.jar"/>
+					<artifact name="commons-io" type="jar" ext="jar" status="no" details="" size="208700" time="0" location="/home/ben/.ivy2/cache/commons-io/commons-io/jars/commons-io-2.5.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/commons-io/commons-io/2.5/commons-io-2.5.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
 		</module>
-		<module organisation="org.scalaz" name="scalaz-concurrent_2.11">
-			<revision name="7.2.2" status="release" pubdate="20160401120725" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://scalaz.org" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="19">
-				<license name="BSD-style" url="http://opensource.org/licenses/BSD-3-Clause"/>
-				<metadata-artifact status="no" details="" size="2823" time="0" location="/home/ben/.ivy2/cache/org.scalaz/scalaz-concurrent_2.11/ivy-7.2.2.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/scalaz/scalaz-concurrent_2.11/7.2.2/scalaz-concurrent_2.11-7.2.2.pom"/>
-				<caller organisation="org.specs2" name="specs2-codata_2.11" conf="compile, runtime" rev="7.2.2" rev-constraint-default="7.2.2" rev-constraint-dynamic="7.2.2" callerrev="3.8.3"/>
-				<caller organisation="org.specs2" name="specs2-common_2.11" conf="compile, runtime" rev="7.2.2" rev-constraint-default="7.2.2" rev-constraint-dynamic="7.2.2" callerrev="3.8.3"/>
+		<module organisation="com.lihaoyi" name="scalatags_2.11">
+			<revision name="0.6.1" status="release" pubdate="20161014134204" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/lihaoyi/scalatags" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="2">
+				<license name="MIT license" url="http://www.opensource.org/licenses/mit-license.php"/>
+				<metadata-artifact status="no" details="" size="3224" time="0" location="/home/ben/.ivy2/cache/com.lihaoyi/scalatags_2.11/ivy-0.6.1.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/lihaoyi/scalatags_2.11/0.6.1/scalatags_2.11-0.6.1.pom"/>
+				<caller organisation="default" name="geopicasso_2.11" conf="test, compile, provided, test-internal, runtime, optional" rev="0.6.1" rev-constraint-default="0.6.1" rev-constraint-dynamic="0.6.1" callerrev="0.0.1"/>
 				<artifacts>
-					<artifact name="scalaz-concurrent_2.11" type="bundle" ext="jar" status="no" details="" size="332541" time="0" location="/home/ben/.ivy2/cache/org.scalaz/scalaz-concurrent_2.11/bundles/scalaz-concurrent_2.11-7.2.2.jar">
-						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/scalaz/scalaz-concurrent_2.11/7.2.2/scalaz-concurrent_2.11-7.2.2.jar"/>
+					<artifact name="scalatags_2.11" type="jar" ext="jar" status="no" details="" size="495573" time="0" location="/home/ben/.ivy2/cache/com.lihaoyi/scalatags_2.11/jars/scalatags_2.11-0.6.1.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/lihaoyi/scalatags_2.11/0.6.1/scalatags_2.11-0.6.1.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
 		</module>
-		<module organisation="org.scalaz" name="scalaz-effect_2.11">
-			<revision name="7.2.2" status="release" pubdate="20160401120717" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://scalaz.org" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="18">
-				<license name="BSD-style" url="http://opensource.org/licenses/BSD-3-Clause"/>
-				<metadata-artifact status="no" details="" size="2664" time="0" location="/home/ben/.ivy2/cache/org.scalaz/scalaz-effect_2.11/ivy-7.2.2.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/scalaz/scalaz-effect_2.11/7.2.2/scalaz-effect_2.11-7.2.2.pom"/>
-				<caller organisation="org.scalaz" name="scalaz-concurrent_2.11" conf="compile, runtime" rev="7.2.2" rev-constraint-default="7.2.2" rev-constraint-dynamic="7.2.2" callerrev="7.2.2"/>
-				<caller organisation="org.specs2" name="specs2-codata_2.11" conf="compile, runtime" rev="7.2.2" rev-constraint-default="7.2.2" rev-constraint-dynamic="7.2.2" callerrev="3.8.3"/>
-				<caller organisation="org.specs2" name="specs2-common_2.11" conf="compile, runtime" rev="7.2.2" rev-constraint-default="7.2.2" rev-constraint-dynamic="7.2.2" callerrev="3.8.3"/>
+		<module organisation="com.lihaoyi" name="sourcecode_2.11">
+			<revision name="0.1.1" status="release" pubdate="20160306232825" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/lihaoyi/sourcecode" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="3">
+				<license name="MIT license" url="http://www.opensource.org/licenses/mit-license.php"/>
+				<metadata-artifact status="no" details="" size="2840" time="0" location="/home/ben/.ivy2/cache/com.lihaoyi/sourcecode_2.11/ivy-0.1.1.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/lihaoyi/sourcecode_2.11/0.1.1/sourcecode_2.11-0.1.1.pom"/>
+				<caller organisation="com.lihaoyi" name="scalatags_2.11" conf="default, compile, runtime, master" rev="0.1.1" rev-constraint-default="0.1.1" rev-constraint-dynamic="0.1.1" callerrev="0.6.1"/>
 				<artifacts>
-					<artifact name="scalaz-effect_2.11" type="bundle" ext="jar" status="no" details="" size="403109" time="0" location="/home/ben/.ivy2/cache/org.scalaz/scalaz-effect_2.11/bundles/scalaz-effect_2.11-7.2.2.jar">
-						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/scalaz/scalaz-effect_2.11/7.2.2/scalaz-effect_2.11-7.2.2.jar"/>
-					</artifact>
-				</artifacts>
-			</revision>
-		</module>
-		<module organisation="org.scalaz" name="scalaz-core_2.11">
-			<revision name="7.2.2" status="release" pubdate="20160401120748" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://scalaz.org" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="17">
-				<license name="BSD-style" url="http://opensource.org/licenses/BSD-3-Clause"/>
-				<metadata-artifact status="no" details="" size="2513" time="0" location="/home/ben/.ivy2/cache/org.scalaz/scalaz-core_2.11/ivy-7.2.2.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/scalaz/scalaz-core_2.11/7.2.2/scalaz-core_2.11-7.2.2.pom"/>
-				<caller organisation="org.scalaz" name="scalaz-effect_2.11" conf="compile, runtime" rev="7.2.2" rev-constraint-default="7.2.2" rev-constraint-dynamic="7.2.2" callerrev="7.2.2"/>
-				<caller organisation="org.scalaz" name="scalaz-concurrent_2.11" conf="compile, runtime" rev="7.2.2" rev-constraint-default="7.2.2" rev-constraint-dynamic="7.2.2" callerrev="7.2.2"/>
-				<caller organisation="org.specs2" name="specs2-codata_2.11" conf="compile, runtime" rev="7.2.2" rev-constraint-default="7.2.2" rev-constraint-dynamic="7.2.2" callerrev="3.8.3"/>
-				<caller organisation="org.specs2" name="specs2-common_2.11" conf="compile, runtime" rev="7.2.2" rev-constraint-default="7.2.2" rev-constraint-dynamic="7.2.2" callerrev="3.8.3"/>
-				<artifacts>
-					<artifact name="scalaz-core_2.11" type="bundle" ext="jar" status="no" details="" size="11522274" time="0" location="/home/ben/.ivy2/cache/org.scalaz/scalaz-core_2.11/bundles/scalaz-core_2.11-7.2.2.jar">
-						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/scalaz/scalaz-core_2.11/7.2.2/scalaz-core_2.11-7.2.2.jar"/>
-					</artifact>
-				</artifacts>
-			</revision>
-		</module>
-		<module organisation="org.apache.xmlgraphics" name="batik-svg-dom">
-			<revision name="1.8" status="release" pubdate="20150511085800" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://xmlgraphics.apache.org/batik/" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="2">
-				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
-				<metadata-artifact status="no" details="" size="3564" time="0" location="/home/ben/.ivy2/cache/org.apache.xmlgraphics/batik-svg-dom/ivy-1.8.xml" searched="false" origin-is-local="false" origin-location="https://jcenter.bintray.com/org/apache/xmlgraphics/batik-svg-dom/1.8/batik-svg-dom-1.8.pom"/>
-				<caller organisation="default" name="geopicasso_2.11" conf="test-internal, test, optional, compile, provided, runtime" rev="1.8" rev-constraint-default="1.8" rev-constraint-dynamic="1.8" callerrev="0.0.1"/>
-				<artifacts>
-					<artifact name="batik-svg-dom" type="jar" ext="jar" status="no" details="" size="217196" time="0" location="/home/ben/.ivy2/cache/org.apache.xmlgraphics/batik-svg-dom/jars/batik-svg-dom-1.8.jar">
-						<origin-location is-local="false" location="https://jcenter.bintray.com/org/apache/xmlgraphics/batik-svg-dom/1.8/batik-svg-dom-1.8.jar"/>
-					</artifact>
-				</artifacts>
-			</revision>
-		</module>
-		<module organisation="org.apache.xmlgraphics" name="batik-parser">
-			<revision name="1.8" status="release" pubdate="20150511084800" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://xmlgraphics.apache.org/batik/" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="12">
-				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
-				<metadata-artifact status="no" details="" size="3115" time="0" location="/home/ben/.ivy2/cache/org.apache.xmlgraphics/batik-parser/ivy-1.8.xml" searched="false" origin-is-local="false" origin-location="https://jcenter.bintray.com/org/apache/xmlgraphics/batik-parser/1.8/batik-parser-1.8.pom"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-svg-dom" conf="default, compile, runtime, master" rev="1.8" rev-constraint-default="1.8" rev-constraint-dynamic="1.8" callerrev="1.8"/>
-				<artifacts>
-					<artifact name="batik-parser" type="jar" ext="jar" status="no" details="" size="55268" time="0" location="/home/ben/.ivy2/cache/org.apache.xmlgraphics/batik-parser/jars/batik-parser-1.8.jar">
-						<origin-location is-local="false" location="https://jcenter.bintray.com/org/apache/xmlgraphics/batik-parser/1.8/batik-parser-1.8.jar"/>
-					</artifact>
-				</artifacts>
-			</revision>
-		</module>
-		<module organisation="org.apache.xmlgraphics" name="batik-dom">
-			<revision name="1.8" status="release" pubdate="20150511083000" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://xmlgraphics.apache.org/batik/" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="9">
-				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
-				<metadata-artifact status="no" details="" size="3381" time="0" location="/home/ben/.ivy2/cache/org.apache.xmlgraphics/batik-dom/ivy-1.8.xml" searched="false" origin-is-local="false" origin-location="https://jcenter.bintray.com/org/apache/xmlgraphics/batik-dom/1.8/batik-dom-1.8.pom"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-svg-dom" conf="default, compile, runtime, master" rev="1.8" rev-constraint-default="1.8" rev-constraint-dynamic="1.8" callerrev="1.8"/>
-				<artifacts>
-					<artifact name="batik-dom" type="jar" ext="jar" status="no" details="" size="140057" time="0" location="/home/ben/.ivy2/cache/org.apache.xmlgraphics/batik-dom/jars/batik-dom-1.8.jar">
-						<origin-location is-local="false" location="https://jcenter.bintray.com/org/apache/xmlgraphics/batik-dom/1.8/batik-dom-1.8.jar"/>
-					</artifact>
-				</artifacts>
-			</revision>
-		</module>
-		<module organisation="xalan" name="xalan">
-			<revision name="2.7.0" status="release" pubdate="20080831074603" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="11">
-				<metadata-artifact status="no" details="" size="2460" time="0" location="/home/ben/.ivy2/cache/xalan/xalan/ivy-2.7.0.xml" searched="false" origin-is-local="false" origin-location="https://jcenter.bintray.com/xalan/xalan/2.7.0/xalan-2.7.0.pom"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-dom" conf="compile, runtime" rev="2.7.0" rev-constraint-default="2.7.0" rev-constraint-dynamic="2.7.0" callerrev="1.8"/>
-				<artifacts>
-					<artifact name="xalan" type="jar" ext="jar" status="no" details="" size="2730442" time="0" location="/home/ben/.ivy2/cache/xalan/xalan/jars/xalan-2.7.0.jar">
-						<origin-location is-local="false" location="https://jcenter.bintray.com/xalan/xalan/2.7.0/xalan-2.7.0.jar"/>
-					</artifact>
-				</artifacts>
-			</revision>
-		</module>
-		<module organisation="org.apache.xmlgraphics" name="batik-xml">
-			<revision name="1.8" status="release" pubdate="20150511090900" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://xmlgraphics.apache.org/batik/" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="10">
-				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
-				<metadata-artifact status="no" details="" size="2532" time="0" location="/home/ben/.ivy2/cache/org.apache.xmlgraphics/batik-xml/ivy-1.8.xml" searched="false" origin-is-local="false" origin-location="https://jcenter.bintray.com/org/apache/xmlgraphics/batik-xml/1.8/batik-xml-1.8.pom"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-dom" conf="compile, runtime" rev="1.8" rev-constraint-default="1.8" rev-constraint-dynamic="1.8" callerrev="1.8"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-parser" conf="compile, runtime" rev="1.8" rev-constraint-default="1.8" rev-constraint-dynamic="1.8" callerrev="1.8"/>
-				<artifacts>
-					<artifact name="batik-xml" type="jar" ext="jar" status="no" details="" size="26777" time="0" location="/home/ben/.ivy2/cache/org.apache.xmlgraphics/batik-xml/jars/batik-xml-1.8.jar">
-						<origin-location is-local="false" location="https://jcenter.bintray.com/org/apache/xmlgraphics/batik-xml/1.8/batik-xml-1.8.jar"/>
-					</artifact>
-				</artifacts>
-			</revision>
-		</module>
-		<module organisation="org.apache.xmlgraphics" name="batik-css">
-			<revision name="1.8" status="release" pubdate="20150511082500" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://xmlgraphics.apache.org/batik/" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="5">
-				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
-				<metadata-artifact status="no" details="" size="2956" time="0" location="/home/ben/.ivy2/cache/org.apache.xmlgraphics/batik-css/ivy-1.8.xml" searched="false" origin-is-local="false" origin-location="https://jcenter.bintray.com/org/apache/xmlgraphics/batik-css/1.8/batik-css-1.8.pom"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-dom" conf="compile, runtime" rev="1.8" rev-constraint-default="1.8" rev-constraint-dynamic="1.8" callerrev="1.8"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-svg-dom" conf="default, compile, runtime, master" rev="1.8" rev-constraint-default="1.8" rev-constraint-dynamic="1.8" callerrev="1.8"/>
-				<artifacts>
-					<artifact name="batik-css" type="jar" ext="jar" status="no" details="" size="256539" time="0" location="/home/ben/.ivy2/cache/org.apache.xmlgraphics/batik-css/jars/batik-css-1.8.jar">
-						<origin-location is-local="false" location="https://jcenter.bintray.com/org/apache/xmlgraphics/batik-css/1.8/batik-css-1.8.jar"/>
-					</artifact>
-				</artifacts>
-			</revision>
-		</module>
-		<module organisation="xml-apis" name="xml-apis-ext">
-			<revision name="1.3.04" status="release" pubdate="20061222083752" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://xml.apache.org/commons/components/external/" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="8">
-				<metadata-artifact status="no" details="" size="2827" time="0" location="/home/ben/.ivy2/cache/xml-apis/xml-apis-ext/ivy-1.3.04.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/xml-apis/xml-apis-ext/1.3.04/xml-apis-ext-1.3.04.pom"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-dom" conf="compile, runtime" rev="1.3.04" rev-constraint-default="1.3.04" rev-constraint-dynamic="1.3.04" callerrev="1.8"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-parser" conf="compile, runtime" rev="1.3.04" rev-constraint-default="1.3.04" rev-constraint-dynamic="1.3.04" callerrev="1.8"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-css" conf="compile, runtime" rev="1.3.04" rev-constraint-default="1.3.04" rev-constraint-dynamic="1.3.04" callerrev="1.8"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-svg-dom" conf="default, compile, runtime, master" rev="1.3.04" rev-constraint-default="1.3.04" rev-constraint-dynamic="1.3.04" callerrev="1.8"/>
-				<artifacts>
-					<artifact name="xml-apis-ext" type="jar" ext="jar" status="no" details="" size="85686" time="0" location="/home/ben/.ivy2/cache/xml-apis/xml-apis-ext/jars/xml-apis-ext-1.3.04.jar">
-						<origin-location is-local="false" location="https://repo1.maven.org/maven2/xml-apis/xml-apis-ext/1.3.04/xml-apis-ext-1.3.04.jar"/>
-					</artifact>
-				</artifacts>
-			</revision>
-		</module>
-		<module organisation="org.apache.xmlgraphics" name="batik-ext">
-			<revision name="1.8" status="release" pubdate="20150701124204" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://xmlgraphics.apache.org/batik/" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="6">
-				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
-				<metadata-artifact status="no" details="" size="2519" time="0" location="/home/ben/.ivy2/cache/org.apache.xmlgraphics/batik-ext/ivy-1.8.xml" searched="false" origin-is-local="false" origin-location="https://jcenter.bintray.com/org/apache/xmlgraphics/batik-ext/1.8/batik-ext-1.8.pom"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-dom" conf="compile, runtime" rev="1.8" rev-constraint-default="1.8" rev-constraint-dynamic="1.8" callerrev="1.8"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-css" conf="compile, runtime" rev="1.8" rev-constraint-default="1.8" rev-constraint-dynamic="1.8" callerrev="1.8"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-svg-dom" conf="default, compile, runtime, master" rev="1.8" rev-constraint-default="1.8" rev-constraint-dynamic="1.8" callerrev="1.8"/>
-				<artifacts>
-					<artifact name="batik-ext" type="jar" ext="jar" status="no" details="" size="10347" time="0" location="/home/ben/.ivy2/cache/org.apache.xmlgraphics/batik-ext/jars/batik-ext-1.8.jar">
-						<origin-location is-local="false" location="https://jcenter.bintray.com/org/apache/xmlgraphics/batik-ext/1.8/batik-ext-1.8.jar"/>
-					</artifact>
-				</artifacts>
-			</revision>
-		</module>
-		<module organisation="xml-apis" name="xml-apis">
-			<revision name="1.3.04" status="release" pubdate="20061222083752" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://xml.apache.org/commons/components/external/" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="7">
-				<metadata-artifact status="no" details="" size="2819" time="0" location="/home/ben/.ivy2/cache/xml-apis/xml-apis/ivy-1.3.04.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/xml-apis/xml-apis/1.3.04/xml-apis-1.3.04.pom"/>
-				<caller organisation="xalan" name="xalan" conf="compile, runtime" rev="2.0.2" rev-constraint-default="2.0.2" rev-constraint-dynamic="2.0.2" callerrev="2.7.0"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-dom" conf="compile, runtime" rev="1.3.04" rev-constraint-default="1.3.04" rev-constraint-dynamic="1.3.04" callerrev="1.8"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-ext" conf="compile, runtime" rev="1.3.04" rev-constraint-default="1.3.04" rev-constraint-dynamic="1.3.04" callerrev="1.8"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-parser" conf="compile, runtime" rev="1.3.04" rev-constraint-default="1.3.04" rev-constraint-dynamic="1.3.04" callerrev="1.8"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-css" conf="compile, runtime" rev="1.3.04" rev-constraint-default="1.3.04" rev-constraint-dynamic="1.3.04" callerrev="1.8"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-svg-dom" conf="default, compile, runtime, master" rev="1.3.04" rev-constraint-default="1.3.04" rev-constraint-dynamic="1.3.04" callerrev="1.8"/>
-				<artifacts>
-					<artifact name="xml-apis" type="jar" ext="jar" status="no" details="" size="194354" time="0" location="/home/ben/.ivy2/cache/xml-apis/xml-apis/jars/xml-apis-1.3.04.jar">
-						<origin-location is-local="false" location="https://repo1.maven.org/maven2/xml-apis/xml-apis/1.3.04/xml-apis-1.3.04.jar"/>
-					</artifact>
-				</artifacts>
-			</revision>
-			<revision name="2.0.2" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="-1">
-				<evicted-by rev="1.3.04"/>
-				<caller organisation="xalan" name="xalan" conf="compile, runtime" rev="2.0.2" rev-constraint-default="2.0.2" rev-constraint-dynamic="2.0.2" callerrev="2.7.0"/>
-				<artifacts>
-				</artifacts>
-			</revision>
-		</module>
-		<module organisation="org.apache.xmlgraphics" name="batik-awt-util">
-			<revision name="1.8" status="release" pubdate="20150511082000" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://xmlgraphics.apache.org/batik/" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="3">
-				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
-				<metadata-artifact status="no" details="" size="2542" time="0" location="/home/ben/.ivy2/cache/org.apache.xmlgraphics/batik-awt-util/ivy-1.8.xml" searched="false" origin-is-local="false" origin-location="https://jcenter.bintray.com/org/apache/xmlgraphics/batik-awt-util/1.8/batik-awt-util-1.8.pom"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-parser" conf="compile, runtime" rev="1.8" rev-constraint-default="1.8" rev-constraint-dynamic="1.8" callerrev="1.8"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-svg-dom" conf="default, compile, runtime, master" rev="1.8" rev-constraint-default="1.8" rev-constraint-dynamic="1.8" callerrev="1.8"/>
-				<artifacts>
-					<artifact name="batik-awt-util" type="jar" ext="jar" status="no" details="" size="301028" time="0" location="/home/ben/.ivy2/cache/org.apache.xmlgraphics/batik-awt-util/jars/batik-awt-util-1.8.jar">
-						<origin-location is-local="false" location="https://jcenter.bintray.com/org/apache/xmlgraphics/batik-awt-util/1.8/batik-awt-util-1.8.jar"/>
-					</artifact>
-				</artifacts>
-			</revision>
-		</module>
-		<module organisation="org.apache.xmlgraphics" name="batik-util">
-			<revision name="1.8" status="release" pubdate="20150511090800" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://xmlgraphics.apache.org/batik/" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="4">
-				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
-				<metadata-artifact status="no" details="" size="2352" time="0" location="/home/ben/.ivy2/cache/org.apache.xmlgraphics/batik-util/ivy-1.8.xml" searched="false" origin-is-local="false" origin-location="https://jcenter.bintray.com/org/apache/xmlgraphics/batik-util/1.8/batik-util-1.8.pom"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-xml" conf="compile, runtime" rev="1.8" rev-constraint-default="1.8" rev-constraint-dynamic="1.8" callerrev="1.8"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-awt-util" conf="compile, runtime" rev="1.8" rev-constraint-default="1.8" rev-constraint-dynamic="1.8" callerrev="1.8"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-dom" conf="compile, runtime" rev="1.8" rev-constraint-default="1.8" rev-constraint-dynamic="1.8" callerrev="1.8"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-parser" conf="compile, runtime" rev="1.8" rev-constraint-default="1.8" rev-constraint-dynamic="1.8" callerrev="1.8"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-css" conf="compile, runtime" rev="1.8" rev-constraint-default="1.8" rev-constraint-dynamic="1.8" callerrev="1.8"/>
-				<caller organisation="org.apache.xmlgraphics" name="batik-svg-dom" conf="default, compile, runtime, master" rev="1.8" rev-constraint-default="1.8" rev-constraint-dynamic="1.8" callerrev="1.8"/>
-				<artifacts>
-					<artifact name="batik-util" type="jar" ext="jar" status="no" details="" size="107737" time="0" location="/home/ben/.ivy2/cache/org.apache.xmlgraphics/batik-util/jars/batik-util-1.8.jar">
-						<origin-location is-local="false" location="https://jcenter.bintray.com/org/apache/xmlgraphics/batik-util/1.8/batik-util-1.8.jar"/>
+					<artifact name="sourcecode_2.11" type="jar" ext="jar" status="no" details="" size="99210" time="0" location="/home/ben/.ivy2/cache/com.lihaoyi/sourcecode_2.11/jars/sourcecode_2.11-0.1.1.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/lihaoyi/sourcecode_2.11/0.1.1/sourcecode_2.11-0.1.1.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
 		</module>
 		<module organisation="org.json" name="json">
-			<revision name="20140107" status="release" pubdate="20140107133602" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/douglascrockford/JSON-java" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="1">
+			<revision name="20140107" status="release" pubdate="20140107133602" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/douglascrockford/JSON-java" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="1">
 				<license name="The JSON License" url="http://json.org/license.html"/>
 				<metadata-artifact status="no" details="" size="3553" time="0" location="/home/ben/.ivy2/cache/org.json/json/ivy-20140107.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/json/json/20140107/json-20140107.pom"/>
-				<caller organisation="default" name="geopicasso_2.11" conf="test-internal, test, optional, compile, provided, runtime" rev="20140107" rev-constraint-default="20140107" rev-constraint-dynamic="20140107" callerrev="0.0.1"/>
+				<caller organisation="default" name="geopicasso_2.11" conf="test, compile, provided, test-internal, runtime, optional" rev="20140107" rev-constraint-default="20140107" rev-constraint-dynamic="20140107" callerrev="0.0.1"/>
 				<artifacts>
 					<artifact name="json" type="jar" ext="jar" status="no" details="" size="64952" time="0" location="/home/ben/.ivy2/cache/org.json/json/jars/json-20140107.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/json/json/20140107/json-20140107.jar"/>
@@ -302,35 +93,30 @@
 			</revision>
 		</module>
 		<module organisation="org.scala-lang" name="scala-library">
-			<revision name="2.11.8" status="release" pubdate="20160308231604" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" extra-info.apiURL="http://www.scala-lang.org/api/2.11.8/" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, compile(*), runtime, runtime(*), master(compile), master" position="0">
+			<revision name="2.11.8" status="release" pubdate="20160308231604" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" extra-info.apiURL="http://www.scala-lang.org/api/2.11.8/" downloaded="false" searched="false" default="false" conf="default, compile, runtime(*), master(compile), runtime, default(compile), compile(*), master" position="0">
 				<license name="BSD 3-Clause" url="http://www.scala-lang.org/license.html"/>
 				<metadata-artifact status="no" details="" size="2653" time="0" location="/home/ben/.ivy2/cache/org.scala-lang/scala-library/ivy-2.11.8.xml" searched="false" origin-is-local="false" origin-location="https://jcenter.bintray.com/org/scala-lang/scala-library/2.11.8/scala-library-2.11.8.pom"/>
-				<caller organisation="org.scala-lang.modules" name="scala-xml_2.11" conf="compile, runtime" rev="2.11.7" rev-constraint-default="2.11.7" rev-constraint-dynamic="2.11.7" callerrev="1.0.5"/>
-				<caller organisation="org.scalaz" name="scalaz-core_2.11" conf="compile, runtime" rev="2.11.8" rev-constraint-default="2.11.8" rev-constraint-dynamic="2.11.8" callerrev="7.2.2"/>
-				<caller organisation="org.scalaz" name="scalaz-effect_2.11" conf="compile, runtime" rev="2.11.8" rev-constraint-default="2.11.8" rev-constraint-dynamic="2.11.8" callerrev="7.2.2"/>
-				<caller organisation="org.scalaz" name="scalaz-concurrent_2.11" conf="compile, runtime" rev="2.11.8" rev-constraint-default="2.11.8" rev-constraint-dynamic="2.11.8" callerrev="7.2.2"/>
-				<caller organisation="org.specs2" name="specs2-matcher_2.11" conf="compile, runtime" rev="2.11.8" rev-constraint-default="2.11.8" rev-constraint-dynamic="2.11.8" callerrev="3.8.3"/>
-				<caller organisation="org.specs2" name="specs2-core_2.11" conf="default, compile, runtime, master" rev="2.11.8" rev-constraint-default="2.11.8" rev-constraint-dynamic="2.11.8" callerrev="3.8.3"/>
-				<caller organisation="org.scala-lang" name="scala-reflect" conf="compile, runtime" rev="2.11.8" rev-constraint-default="2.11.8" rev-constraint-dynamic="2.11.8" callerrev="2.11.8"/>
-				<caller organisation="default" name="geopicasso_2.11" conf="test-internal, test, optional, compile, provided, runtime" rev="2.11.8" rev-constraint-default="2.11.8" rev-constraint-dynamic="2.11.8" callerrev="0.0.1"/>
-				<caller organisation="org.scala-lang.modules" name="scala-parser-combinators_2.11" conf="compile, runtime" rev="2.11.6" rev-constraint-default="2.11.6" rev-constraint-dynamic="2.11.6" callerrev="1.0.4"/>
-				<caller organisation="org.specs2" name="specs2-codata_2.11" conf="compile, runtime" rev="2.11.8" rev-constraint-default="2.11.8" rev-constraint-dynamic="2.11.8" callerrev="3.8.3"/>
-				<caller organisation="org.specs2" name="specs2-common_2.11" conf="compile, runtime" rev="2.11.8" rev-constraint-default="2.11.8" rev-constraint-dynamic="2.11.8" callerrev="3.8.3"/>
+				<caller organisation="com.lihaoyi" name="scalatags_2.11" conf="default, compile, runtime, master" rev="2.11.8" rev-constraint-default="2.11.8" rev-constraint-dynamic="2.11.8" callerrev="0.6.1"/>
+				<caller organisation="com.lihaoyi" name="sourcecode_2.11" conf="compile, runtime" rev="2.11.7" rev-constraint-default="2.11.7" rev-constraint-dynamic="2.11.7" callerrev="0.1.1"/>
+				<caller organisation="com.lihaoyi" name="utest_2.11" conf="default, compile, runtime, master" rev="2.11.4" rev-constraint-default="2.11.4" rev-constraint-dynamic="2.11.4" callerrev="0.4.3"/>
+				<caller organisation="default" name="geopicasso_2.11" conf="test, compile, provided, test-internal, runtime, optional" rev="2.11.8" rev-constraint-default="2.11.8" rev-constraint-dynamic="2.11.8" callerrev="0.0.1"/>
+				<caller organisation="org.scala-lang" name="scala-reflect" conf="compile, runtime" rev="2.11.4" rev-constraint-default="2.11.4" rev-constraint-dynamic="2.11.4" callerrev="2.11.4"/>
 				<artifacts>
 					<artifact name="scala-library" type="jar" ext="jar" status="no" details="" size="5744974" time="0" location="/home/ben/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.8.jar">
 						<origin-location is-local="false" location="https://jcenter.bintray.com/org/scala-lang/scala-library/2.11.8/scala-library-2.11.8.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
-			<revision name="2.11.7" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="-1">
+			<revision name="2.11.4" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="-1">
 				<evicted-by rev="2.11.8"/>
-				<caller organisation="org.scala-lang.modules" name="scala-xml_2.11" conf="compile, runtime" rev="2.11.7" rev-constraint-default="2.11.7" rev-constraint-dynamic="2.11.7" callerrev="1.0.5"/>
+				<caller organisation="com.lihaoyi" name="utest_2.11" conf="default, compile, runtime, master" rev="2.11.4" rev-constraint-default="2.11.4" rev-constraint-dynamic="2.11.4" callerrev="0.4.3"/>
+				<caller organisation="org.scala-lang" name="scala-reflect" conf="compile, runtime" rev="2.11.4" rev-constraint-default="2.11.4" rev-constraint-dynamic="2.11.4" callerrev="2.11.4"/>
 				<artifacts>
 				</artifacts>
 			</revision>
-			<revision name="2.11.6" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="-1">
+			<revision name="2.11.7" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="-1">
 				<evicted-by rev="2.11.8"/>
-				<caller organisation="org.scala-lang.modules" name="scala-parser-combinators_2.11" conf="compile, runtime" rev="2.11.6" rev-constraint-default="2.11.6" rev-constraint-dynamic="2.11.6" callerrev="1.0.4"/>
+				<caller organisation="com.lihaoyi" name="sourcecode_2.11" conf="compile, runtime" rev="2.11.7" rev-constraint-default="2.11.7" rev-constraint-dynamic="2.11.7" callerrev="0.1.1"/>
 				<artifacts>
 				</artifacts>
 			</revision>

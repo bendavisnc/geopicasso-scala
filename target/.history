@@ -3,3 +3,8 @@ resources
 println(resources)
 resources
 inspect resources
+inspect main
+inspect run:main
+inspect mainClass
+run
+inspect mainClass

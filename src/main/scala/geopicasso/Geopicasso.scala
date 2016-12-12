@@ -1,82 +1,86 @@
 package geopicasso
 
-import org.scalajs.dom
-import org.singlespaced.d3js.{d3, Selection}
-import scala.scalajs.js
-import scala.scalajs.js.annotation.JSExport
+import java.io.File
+import java.nio.charset.Charset
+
+import org.apache.commons.io.FileUtils
+
+import scala.annotation.tailrec
 import common.math.Helpers._
+import scalatags.Text.TypedTag
+import scalatags.Text.svgTags.{svg, rect}
+import scalatags.Text.short._
+import scalatags.Text.svgAttrs.{width, height, x, y, fill, stroke}
 
-@JSExport
-class Geopicasso(configPath: String) {
-
-//	private val config = Config.fromJson(configPath)
-	private val config = Config.testConfig
+class Geopicasso(config: Config) {
 
 	def firstAndLastShapes: (GeoShape, GeoShape) = {
-		val littleR = config.r / config.n
+		val littleR = 0.5 / config.n
 		(Circle(cx = littleR, cy = 0.5, r = littleR), Circle(cx = 0.5, cy = 0.5, r = 0.5))
 	}
 
 	private def nextShape(previousShape: GeoShape): GeoShape = {
 		val (firstShape, lastShape) = firstAndLastShapes
 		val makeBigger = toFixed(previousShape.cx + 3 * previousShape.r, 4) > toFixed(lastShape.cx + lastShape.r, 4)
-		lazy val biggerR = (previousShape.r / firstShape.r + 1) * firstShape.r
 		if (makeBigger) {
-				previousShape.copy(cx = biggerR, r = biggerR)
-		} else previousShape.copy(cx = previousShape.cx + previousShape.r * 2)
+			val biggerR = (previousShape.r / firstShape.r + 1) * firstShape.r
+			previousShape.copy(cx = biggerR, r = biggerR)
+		}
+		else previousShape.copy(cx = previousShape.cx + previousShape.r * 2)
 	}
 
 	def unitShapes: List[GeoShape] = {
 		val (firstShape, lastShape) = firstAndLastShapes
-		def recur(previousShape: GeoShape): List[GeoShape] = {
+		@tailrec
+		def recur(previousShape: GeoShape, acc: List[GeoShape]): List[GeoShape] = {
 			val ns = nextShape(previousShape)
-			if (ns.r >= lastShape.r) ns :: Nil else previousShape :: recur(ns)
+			if (ns.r >= lastShape.r) ns :: acc else recur(ns, previousShape :: acc)
 		}
-		recur(firstShape)
+		recur(firstShape, Nil)
 	}
-
-//	def projectShape(shape: GeoShape): GeoShape = {
-//		val xInterp = d3.scale.linear()
-//			.domain(js.Array(0, 1))
-//			.range(js.Array(0, config.xRes))
-//		val yInterp = d3.scale.linear()
-//			.domain(js.Array(0, 1))
-//			.range(js.Array(0, config.yRes))
-//		shape.copy(
-//			cx = xInterp(shape.cx),
-//			cy = yInterp(shape.cy),
-//			r = xInterp(shape.r)
-//		)
-//	}
 
 	def projectShape(shape: GeoShape): GeoShape = {
-			val sF = (d: Double) => config.r / 0.5 * d
-			val mxF = (d: Double) => config.cx - sF(0.5) + d
-			val myF = (d: Double) => config.cy - sF(0.5) + d
-			val sxF = (d: Double) => config.xRes * d
-			val syF = (d: Double) => config.yRes * d
-			val pcx = sxF(mxF(sF(shape.cx)))
-			val pcy = syF(myF(sF(shape.cy)))
-			val pr = sxF(sF(shape.r))
-			shape.copy(pcx, pcy, pr)
+			val configUnitScale = (d: Double) => config.r / 0.5 * d
+			val configUnitXMove = (d: Double) => config.cx - configUnitScale(0.5) + d
+			val configUnitYMove = (d: Double) => config.cy - configUnitScale(0.5) + d
+			val unitToProjectedXScale = (d: Double) => config.xRes * d
+			val unitToProjectedYScale  = (d: Double) => config.yRes * d
+			val xTransform = configUnitScale andThen configUnitXMove andThen unitToProjectedXScale
+			val yTransform = configUnitScale andThen configUnitYMove andThen unitToProjectedYScale
+			val rTransform = configUnitScale andThen unitToProjectedXScale
+			shape.copy(
+				cx = xTransform(shape.cx),
+				cy = yTransform(shape.cy),
+				r = rTransform(shape.r)
+			)
 	}
 
-
-	private def createSvg: Selection[dom.EventTarget] = {
-		d3.select("#container")
-			.append("svg")
-			.attr("width", config.xRes + "px")
-			.attr("height", config.yRes + "px")
-			.style("background-color", "black") // todo
+	private def createSvg(childContent: List[TypedTag[String]]): TypedTag[String] = {
+		svg(width := config.xRes, height := config.yRes)(
+			rect(x := 0, y := 0, width := config.xRes, height := config.yRes, fill := config.bg),
+			childContent
+		)
 	}
 
-
-	@JSExport
 	def go(): Unit = {
-		val svgDoc = createSvg
-		unitShapes
+		val shapes: List[TypedTag[String]] = unitShapes
 			.map(projectShape)
-			.map(_.addToDoc(svgDoc))
+			.map(_.toSvgElem(config))
+
+		FileUtils.writeStringToFile(
+			new File("renders/" + config.name + ".svg"),
+			createSvg(shapes).toString(),
+			Charset.defaultCharset())
 	}
 
+}
+
+object Geopicasso {
+
+	def main(args: Array[String]): Unit = {
+		new Geopicasso(
+			args.headOption.map(Config.fromJson).getOrElse(Config.default))
+			.go()
+
+	}
 }

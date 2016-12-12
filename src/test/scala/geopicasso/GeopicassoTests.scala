@@ -1,21 +1,34 @@
 package geopicasso
 
-import org.singlespaced.d3js.d3
 import utest._
+import scalatags.Text.TypedTag
+import scalatags.Text.svgTags.{svg, rect}
+import scalatags.Text.tags.{div, body, h1, h2, p}
+import scalatags.Text.svgAttrs.{width, height, x, y, fill, stroke}
+import scalatags.Text.short._
 
-import scala.scalajs.js
 
 object GeopicassoTests extends TestSuite {
 
 	val tests = this {
-		'unitShapes {
-			new Geopicasso(null).unitShapes.length
+		'whatevs {
+			svg(height := "800", width := "500")(
+			)
 		}
-		'd3scale {
-			d3.scale.linear()
-				.domain(js.Array(0, 1))
-				.range(js.Array(0, 1200))
-				.apply(0.5)
+		'whatevs2 {
+			val posts = Seq(
+				("alice", "i like pie"),
+				("bob", "pie is evil i hate you"),
+				("charlie", "i like pie and pie is evil, i hat myself")
+			)
+			body(
+				h1("This is my title"),
+				div("posts"),
+				for ((name, text) <- posts) yield div(
+					h2("Post by ", name),
+					p(text)
+				)
+			)
 		}
 	}
 
