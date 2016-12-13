@@ -28,6 +28,22 @@ object ConfigTests extends TestSuite {
 					Config.default.copy(name = "superminimalist")
 			)
 		}
+
+		'ednVsJson_minimalist {
+			assert(
+				Config.from("minimalist.json")
+					==
+				Config.from("minimalist.edn")
+			)
+		}
+
+		'ednVsJson_superminimalist {
+			assert(
+				Config.from("superminimalist.json")
+					==
+					Config.from("superminimalist.edn")
+			)
+		}
 	}
 
 }

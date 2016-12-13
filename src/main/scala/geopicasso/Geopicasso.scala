@@ -1,8 +1,10 @@
 package geopicasso
 
-import java.io.File
+import java.io.{FileOutputStream, ByteArrayInputStream, File}
 import java.nio.charset.Charset
 
+import org.apache.batik.transcoder.{TranscoderOutput, TranscoderInput}
+import org.apache.batik.transcoder.image.PNGTranscoder
 import org.apache.commons.io.FileUtils
 
 import scala.annotation.tailrec
@@ -10,7 +12,7 @@ import common.math.Helpers._
 import scalatags.Text.TypedTag
 import scalatags.Text.svgTags.{svg, rect}
 import scalatags.Text.short._
-import scalatags.Text.svgAttrs.{width, height, x, y, fill, stroke}
+import scalatags.Text.svgAttrs.{width, height, x, y, fill, stroke, xmlns}
 
 class Geopicasso(config: Config) {
 
@@ -55,11 +57,21 @@ class Geopicasso(config: Config) {
 			)
 	}
 
-	private def createSvg(childContent: List[TypedTag[String]]): TypedTag[String] = {
-		svg(width := config.xRes, height := config.yRes)(
+	private def createSvgDoc(childContent: List[TypedTag[String]]): TypedTag[String] = {
+		svg(xmlns := "http://www.w3.org/2000/svg", width := config.xRes, height := config.yRes)(
 			rect(x := 0, y := 0, width := config.xRes, height := config.yRes, fill := config.bg),
 			childContent
 		)
+	}
+
+	def svgDocToPng(svgDoc: TypedTag[String], config: Config): Unit = {
+		val pngConverter = new PNGTranscoder()
+		val svgInput: TranscoderInput = new TranscoderInput(new ByteArrayInputStream(svgDoc.toString.getBytes))
+		val svgOutFile = new FileOutputStream("renders/" + config.name + ".png")
+		val svgOut = new TranscoderOutput(svgOutFile)
+		pngConverter.transcode(svgInput, svgOut)
+		svgOutFile.flush()
+		svgOutFile.close()
 	}
 
 	def go(): Unit = {
@@ -67,10 +79,7 @@ class Geopicasso(config: Config) {
 			.map(projectShape)
 			.map(_.toSvgElem(config))
 
-		FileUtils.writeStringToFile(
-			new File("renders/" + config.name + ".svg"),
-			createSvg(shapes).toString(),
-			Charset.defaultCharset())
+		svgDocToPng(createSvgDoc(shapes), config)
 	}
 
 }
@@ -79,7 +88,7 @@ object Geopicasso {
 
 	def main(args: Array[String]): Unit = {
 		new Geopicasso(
-			args.headOption.map(Config.fromJson).getOrElse(Config.default))
+			args.headOption.map(Config.from).getOrElse(Config.default))
 			.go()
 
 	}

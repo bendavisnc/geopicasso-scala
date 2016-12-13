@@ -1,6 +1,9 @@
 package geopicasso
 
+
 import org.json.JSONObject
+import us.bpsm.edn.parser.Parsers
+import scala.collection.JavaConversions._
 
 
 /**
@@ -51,6 +54,38 @@ object Config {
 			xRes = rx,
 			yRes = ry
 		)
+	}
+
+	def fromEdn(path: String): Config = { // an admitted mess...
+		val name = path.split('.')(0)
+		val ednStr = io.Source.fromInputStream(getClass.getResourceAsStream("/" + path)).mkString
+		val pbr = Parsers.newParseable(ednStr)
+		val p = Parsers.newParser(Parsers.defaultConfiguration())
+		val ednData = p.nextValue(pbr).asInstanceOf[java.util.Map[String, Object]]
+		val (rx, ry) = Option(ednData.get("res").asInstanceOf[java.util.Map[String, Long]]).map(
+			(mVal: java.util.Map[String, Long]) => {
+				(mVal.getOrElse("x", default.xRes.toLong).toInt, mVal.getOrElse("y", default.yRes.toLong).toInt)
+			})
+			.getOrElse((default.xRes, default.yRes))
+		Config(
+			name = name,
+			cx = ednData.getOrElse("cx", default.cx).asInstanceOf[Double],
+			cy = ednData.getOrElse("cy", default.cy).asInstanceOf[Double],
+			r = ednData.getOrElse("r", default.r).asInstanceOf[Double],
+			n = ednData.getOrElse("n", default.n.toLong).asInstanceOf[Long].toInt,
+			bg = ednData.getOrElse("bg", default.bg).asInstanceOf[String],
+			xRes = rx,
+			yRes = ry
+		)
+	}
+
+	def from(path: String): Config = {
+		if (path.contains("edn"))
+			fromEdn(path)
+		else if (path.contains("json"))
+			fromJson(path)
+		else
+			throw new Exception("Unrecognized config type.")
 	}
 
 	val default =

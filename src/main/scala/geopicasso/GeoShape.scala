@@ -26,7 +26,7 @@ class Circle(val cx: Double, val cy: Double, val r: Double) extends GeoShape {
 	override def toSvgElem(config: Config): TypedTag[String] = {
 		val strokeWidth = Math.max(0.05, config.r * config.n * 0.0005)
 		circle(
-			svgAttrs.id := this.toString,
+//			svgAttrs.id := this.toString,
 			svgAttrs.cx := cx,
 			svgAttrs.cy := cy,
 			svgAttrs.r := r,
