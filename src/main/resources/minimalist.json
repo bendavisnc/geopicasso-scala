@@ -7,6 +7,11 @@
 
   "n": 4,
 
+  "fills": [
+    {"color": "blue", "opacity": 0.5},
+    {"color": "red", "opacity": 0.5}
+  ],
+
   "res": {
     "x": 800,
     "y": 600

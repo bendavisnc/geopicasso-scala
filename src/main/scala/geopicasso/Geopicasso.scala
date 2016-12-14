@@ -8,7 +8,7 @@ import org.apache.batik.transcoder.image.PNGTranscoder
 import org.apache.commons.io.FileUtils
 
 import scala.annotation.tailrec
-import common.math.Helpers._
+import common.math.Helpers.toFixed
 import scalatags.Text.TypedTag
 import scalatags.Text.svgTags.{svg, rect}
 import scalatags.Text.short._
@@ -16,12 +16,12 @@ import scalatags.Text.svgAttrs.{width, height, x, y, fill, stroke, xmlns}
 
 class Geopicasso(config: Config) {
 
-	def firstAndLastShapes: (GeoShape, GeoShape) = {
+	def firstAndLastShapes: (ShapeModel, ShapeModel) = {
 		val littleR = 0.5 / config.n
-		(Circle(cx = littleR, cy = 0.5, r = littleR), Circle(cx = 0.5, cy = 0.5, r = 0.5))
+		(ShapeModel(cx = littleR, cy = 0.5, r = littleR), ShapeModel(cx = 0.5, cy = 0.5, r = 0.5))
 	}
 
-	private def nextShape(previousShape: GeoShape): GeoShape = {
+	private def nextShape(previousShape: ShapeModel): ShapeModel = {
 		val (firstShape, lastShape) = firstAndLastShapes
 		val makeBigger = toFixed(previousShape.cx + 3 * previousShape.r, 4) > toFixed(lastShape.cx + lastShape.r, 4)
 		if (makeBigger) {
@@ -31,17 +31,24 @@ class Geopicasso(config: Config) {
 		else previousShape.copy(cx = previousShape.cx + previousShape.r * 2)
 	}
 
-	def unitShapes: List[GeoShape] = {
+	def unitShapes: List[ShapeModel] = {
 		val (firstShape, lastShape) = firstAndLastShapes
 		@tailrec
-		def recur(previousShape: GeoShape, acc: List[GeoShape]): List[GeoShape] = {
+		def recur(previousShape: ShapeModel, acc: List[ShapeModel]): List[ShapeModel] = {
 			val ns = nextShape(previousShape)
 			if (ns.r >= lastShape.r) ns :: acc else recur(ns, previousShape :: acc)
 		}
 		recur(firstShape, Nil)
 	}
 
-	def projectShape(shape: GeoShape): GeoShape = {
+	def fillStyles: Stream[FillStyle] = {
+		val fills = config.fills.map(
+			cData => FillStyle(cData._1, cData._2)
+		)
+		Stream.continually(fills).flatten
+	}
+
+	def projectShape(shape: ShapeModel): ShapeModel = {
 			val configUnitScale = (d: Double) => config.r / 0.5 * d
 			val configUnitXMove = (d: Double) => config.cx - configUnitScale(0.5) + d
 			val configUnitYMove = (d: Double) => config.cy - configUnitScale(0.5) + d
@@ -57,6 +64,18 @@ class Geopicasso(config: Config) {
 			)
 	}
 
+	def readyToDrawShapes: List[TypedTag[String]] = {
+		unitShapes
+			.map(projectShape)
+			.toStream
+			.zip(fillStyles)
+			.map({
+				case (shapeModel, fillStyle) => {
+					ShapeModel.toSvgElem(shapeModel, fillStyle, config)
+				}
+			}).toList
+	}
+
 	private def createSvgDoc(childContent: List[TypedTag[String]]): TypedTag[String] = {
 		svg(xmlns := "http://www.w3.org/2000/svg", width := config.xRes, height := config.yRes)(
 			rect(x := 0, y := 0, width := config.xRes, height := config.yRes, fill := config.bg),
@@ -64,7 +83,7 @@ class Geopicasso(config: Config) {
 		)
 	}
 
-	def svgDocToPng(svgDoc: TypedTag[String], config: Config): Unit = {
+	def spitPng(svgDoc: TypedTag[String], config: Config): Unit = {
 		val pngConverter = new PNGTranscoder()
 		val svgInput: TranscoderInput = new TranscoderInput(new ByteArrayInputStream(svgDoc.toString.getBytes))
 		val svgOutFile = new FileOutputStream("renders/" + config.name + ".png")
@@ -74,12 +93,18 @@ class Geopicasso(config: Config) {
 		svgOutFile.close()
 	}
 
-	def go(): Unit = {
-		val shapes: List[TypedTag[String]] = unitShapes
-			.map(projectShape)
-			.map(_.toSvgElem(config))
+	def spitSvg(svgDoc: TypedTag[String], config: Config): Unit = {
+		FileUtils.write(
+			new File("renders/" + config.name + ".svg"),
+			svgDoc.toString,
+			Charset.defaultCharset())
+	}
 
-		svgDocToPng(createSvgDoc(shapes), config)
+
+	def go(): Unit = {
+		val svgDoc = createSvgDoc(readyToDrawShapes)
+		spitSvg(svgDoc, config)
+		spitPng(svgDoc, config)
 	}
 
 }

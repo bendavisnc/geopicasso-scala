@@ -11,24 +11,11 @@ import scalatags.Text.short._
 object GeopicassoTests extends TestSuite {
 
 	val tests = this {
-		'whatevs {
-			svg(height := "800", width := "500")(
-			)
+		'unitShapes_length {
+			new Geopicasso(Config.from("minimalist2.edn")).unitShapes.length
 		}
-		'whatevs2 {
-			val posts = Seq(
-				("alice", "i like pie"),
-				("bob", "pie is evil i hate you"),
-				("charlie", "i like pie and pie is evil, i hat myself")
-			)
-			body(
-				h1("This is my title"),
-				div("posts"),
-				for ((name, text) <- posts) yield div(
-					h2("Post by ", name),
-					p(text)
-				)
-			)
+		'readyShapes_length {
+			new Geopicasso(Config.from("minimalist2.edn")).readyToDrawShapes.length
 		}
 	}
 

@@ -1,5 +1,7 @@
 
 add styles
+  - fills ✓
+  - strokes
 
 add shapes
 
