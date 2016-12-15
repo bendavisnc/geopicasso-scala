@@ -1,7 +1,7 @@
 
 add styles
   - fills ✓
-  - strokes
+  - strokes ✓
 
 add shapes
 

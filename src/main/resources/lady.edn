@@ -13,6 +13,10 @@
 	{"color" "#ffa500", "opacity" 0.5}
   ]
 
+  "strokes" [
+	{"color" "#ffffff", "opacity" 0.0},
+  ]
+
   "res" {
     "x" 1600,
     "y" 1200

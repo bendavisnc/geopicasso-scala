@@ -16,9 +16,11 @@ case class ShapeModel(cx: Double, cy: Double, r: Double)
 
 case class FillStyle(color: String, opacity: Double)
 
+case class StrokeStyle(color: String, opacity: Double, width: Double)
+
 object ShapeModel {
 
-	def toSvgElem(shape: ShapeModel, fillStyle: FillStyle, config: Config): TypedTag[String] = {
+	def toSvgElem(shape: ShapeModel, fillStyle: FillStyle, strokeStyle: StrokeStyle, config: Config): TypedTag[String] = {
 		val precisionAmt = 4
 		val strokeWidth = Math.max(0.05, config.r * config.n * 0.0005)
 		circle(
@@ -26,11 +28,10 @@ object ShapeModel {
 			svgAttrs.cy := toFixed(shape.cy, precisionAmt),
 			svgAttrs.r := toFixed(shape.r, precisionAmt),
 			svgAttrs.fillOpacity := fillStyle.opacity,
-			svgAttrs.fill := fillStyle.color
-//			svgAttrs.stroke := "black",
-//			svgAttrs.strokeWidth := 0.5
-//			svgAttrs.stroke := fillStyle.color,
-//			svgAttrs.strokeWidth := strokeWidth
+			svgAttrs.fill := fillStyle.color,
+			svgAttrs.stroke := strokeStyle.color,
+			svgAttrs.strokeWidth := strokeStyle.width,
+			svgAttrs.strokeOpacity := strokeStyle.opacity
 		)
 	}
 }

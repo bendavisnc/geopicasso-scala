@@ -23,6 +23,8 @@ case class Config(
 	n: Int,
 	bg: String,
 	fills: List[(String, Double)],
+	strokes: List[(String, Double, Double)],
+//	shapes: List[Int],
 	xRes: Int,
 	yRes: Int
 	) {
@@ -53,6 +55,15 @@ object Config {
 			}
 		).getOrElse(default.fills)
 
+		val ss = Option(jsonData.optJSONArray("strokes")).map(
+			jArr => {
+				(for(i <- Range(0, jArr.length())) yield {
+					val jObj = jArr.getJSONObject(i)
+					(jObj.getString("color"), jObj.getDouble("opacity"), jObj.getDouble("width"))
+				}).toList
+			}
+		).getOrElse(default.strokes)
+
 		Config(
 			name = name,
 			cx = jsonData.optDouble("cx", default.cx),
@@ -61,6 +72,7 @@ object Config {
 			n = jsonData.optInt("n", default.n),
 			bg = jsonData.optString("bg", default.bg),
 			fills = fs,
+			strokes = ss,
 			xRes = rx,
 			yRes = ry
 		)
@@ -89,6 +101,16 @@ object Config {
 			}
 		).getOrElse(default.fills)
 
+		val ss = Option(ednData.get("strokes").asInstanceOf[java.util.List[java.util.Map[String, Object]]]).map(
+			arr => {
+				(arr.asScala.map(
+					cData => {
+						(cData.get("color").asInstanceOf[String], cData.get("opacity").asInstanceOf[Double], cData.get("width").asInstanceOf[Double])
+					}
+				)).toList
+			}
+		).getOrElse(default.strokes)
+
 		Config(
 			name = name,
 			cx = ednData.asScala.getOrElse("cx", default.cx).asInstanceOf[Double],
@@ -97,6 +119,7 @@ object Config {
 			n = ednData.asScala.getOrElse("n", default.n.toLong).asInstanceOf[Long].toInt,
 			bg = ednData.asScala.getOrElse("bg", default.bg).asInstanceOf[String],
 			fills = fs,
+			strokes = ss,
 			xRes = rx,
 			yRes = ry
 		)
@@ -120,6 +143,8 @@ object Config {
 			n = 1000,
 			bg = "rgb(0, 0, 0)",
 			fills = ("black", 0.0) :: Nil,
+			strokes = ("black", 1.0, 1.0) :: Nil,
+//			shapes = 0 :: Nil,
 			xRes = 1600,
 			yRes = 1200
 		)

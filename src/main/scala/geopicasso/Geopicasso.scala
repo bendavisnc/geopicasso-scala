@@ -48,6 +48,13 @@ class Geopicasso(config: Config) {
 		Stream.continually(fills).flatten
 	}
 
+	def strokeStyles: Stream[StrokeStyle] = {
+		val strokes = config.strokes.map(
+			cData => StrokeStyle(cData._1, cData._2, cData._3)
+		)
+		Stream.continually(strokes).flatten
+	}
+
 	def projectShape(shape: ShapeModel): ShapeModel = {
 			val configUnitScale = (d: Double) => config.r / 0.5 * d
 			val configUnitXMove = (d: Double) => config.cx - configUnitScale(0.5) + d
@@ -65,15 +72,18 @@ class Geopicasso(config: Config) {
 	}
 
 	def readyToDrawShapes: List[TypedTag[String]] = {
-		unitShapes
-			.map(projectShape)
-			.toStream
-			.zip(fillStyles)
-			.map({
-				case (shapeModel, fillStyle) => {
-					ShapeModel.toSvgElem(shapeModel, fillStyle, config)
+		val shapeModels =
+			unitShapes
+				.map(projectShape).toStream
+		val readyToDraw: Stream[TypedTag[String]] =
+			(shapeModels, fillStyles,strokeStyles).zipped.map(
+				{
+					case (shapeModel: ShapeModel, fillStyle: FillStyle, strokeStyle: StrokeStyle) => {
+						ShapeModel.toSvgElem(shapeModel, fillStyle, strokeStyle, config)
+					}
 				}
-			}).toList
+			)
+		readyToDraw.toList
 	}
 
 	private def createSvgDoc(childContent: List[TypedTag[String]]): TypedTag[String] = {

@@ -17,6 +17,7 @@ object ConfigTests extends TestSuite {
 					n = 4,
 					bg = "rgb(0, 0, 0)",
 					fills = ("blue", 0.5) :: ("red", 0.5) :: Nil,
+					strokes = ("black", 1.0, 1.0) :: Nil,
 					xRes = 800,
 					yRes = 600
 				))
