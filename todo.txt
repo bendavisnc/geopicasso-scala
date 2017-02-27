@@ -8,3 +8,8 @@ add shapes
 add pngs ✓
 
 add edn ✓
+
+implicit config
+
+add transformation ✓ (kinda feels dumb)
+

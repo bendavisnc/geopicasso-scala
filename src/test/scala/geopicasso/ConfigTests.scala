@@ -17,7 +17,8 @@ object ConfigTests extends TestSuite {
 					n = 4,
 					bg = "rgb(0, 0, 0)",
 					fills = ("blue", 0.5) :: ("red", 0.5) :: Nil,
-					strokes = ("black", 1.0, 1.0) :: Nil,
+					strokes = ("green", 1.0, 2.0) :: Nil,
+					Config.default.transformation,
 					xRes = 800,
 					yRes = 600
 				))
@@ -30,7 +31,7 @@ object ConfigTests extends TestSuite {
 					Config.default.copy(name = "superminimalist")
 			)
 		}
-
+//
 		'ednVsJson_minimalist {
 			assert(
 				Config.from("minimalist.json")
@@ -38,7 +39,7 @@ object ConfigTests extends TestSuite {
 				Config.from("minimalist.edn")
 			)
 		}
-
+//
 		'ednVsJson_superminimalist {
 			assert(
 				Config.from("superminimalist.json")

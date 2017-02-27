@@ -13,9 +13,7 @@
   ],
 
   "strokes": [
-    {"color": "green", "opacity": 0.5, "width": 0.2},
-    {"color": "orange", "opacity": 0.5, "width": 0.3}
-  ],
+    {"color": "green", "opacity": 1.0, "width": 2.0}],
 
   "res": {
     "x": 800,

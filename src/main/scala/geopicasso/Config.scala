@@ -1,7 +1,7 @@
 package geopicasso
 
 
-import org.json.JSONObject
+import org.json.{JSONArray, JSONObject}
 import us.bpsm.edn.parser.Parsers
 
 
@@ -24,7 +24,8 @@ case class Config(
 	bg: String,
 	fills: List[(String, Double)],
 	strokes: List[(String, Double, Double)],
-//	shapes: List[Int],
+	transformation: ShapeModel => ShapeModel,
+	shapes: List[Int],
 	xRes: Int,
 	yRes: Int
 	) {
@@ -64,6 +65,14 @@ object Config {
 			}
 		).getOrElse(default.strokes)
 
+		val shs = Option(jsonData.optJSONArray("shapes")).map(
+			jArr => {
+				(for(i <- Range(0, jArr.length())) yield {
+					jArr.getInt(i)
+				}).toList
+			}
+		).getOrElse(default.shapes)
+
 		Config(
 			name = name,
 			cx = jsonData.optDouble("cx", default.cx),
@@ -71,6 +80,17 @@ object Config {
 			r = jsonData.optDouble("r", default.r),
 			n = jsonData.optInt("n", default.n),
 			bg = jsonData.optString("bg", default.bg),
+//			transformation = default.transformation,
+			transformation =
+				Option(jsonData.optJSONArray("transformation"))
+					.map(
+						(jArr: JSONArray) => {
+							Transformation
+								.from(jArr.getString(0))
+								.withParameter(jArr.get(1).asInstanceOf[Any])
+						})
+					.getOrElse(default.transformation),
+			shapes = shs,
 			fills = fs,
 			strokes = ss,
 			xRes = rx,
@@ -111,6 +131,9 @@ object Config {
 			}
 		).getOrElse(default.strokes)
 
+		val shs = Option(ednData.get("shapes").asInstanceOf[java.util.List[Int]]).map(
+		).getOrElse(default.strokes)
+
 		Config(
 			name = name,
 			cx = ednData.asScala.getOrElse("cx", default.cx).asInstanceOf[Double],
@@ -120,6 +143,16 @@ object Config {
 			bg = ednData.asScala.getOrElse("bg", default.bg).asInstanceOf[String],
 			fills = fs,
 			strokes = ss,
+			transformation =
+//				Option(ednData.asScala.get("transformation").asInstanceOf[java.util.List[Any]])
+				ednData.asScala.get("transformation").asInstanceOf[Option[java.util.List[_]]]
+					.map(
+						(arr) => {
+							Transformation
+								.from(arr.get(0).asInstanceOf[String])
+								.withParameter(arr.get(1))
+						})
+					.getOrElse(default.transformation),
 			xRes = rx,
 			yRes = ry
 		)
@@ -134,6 +167,11 @@ object Config {
 			throw new Exception("Unrecognized config type.")
 	}
 
+//	def identity[A](a: =>A): A = {
+//		a
+//	}
+	def identity(shapeModel: ShapeModel): ShapeModel = shapeModel
+
 	val default =
 		Config(
 			name = "default",
@@ -144,7 +182,8 @@ object Config {
 			bg = "rgb(0, 0, 0)",
 			fills = ("black", 0.0) :: Nil,
 			strokes = ("black", 1.0, 1.0) :: Nil,
-//			shapes = 0 :: Nil,
+			transformation = identity,
+			shapes = 0 :: Nil,
 			xRes = 1600,
 			yRes = 1200
 		)

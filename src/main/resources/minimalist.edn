@@ -12,6 +12,9 @@
     {"color" "red", "opacity" 0.5}
   ],
 
+  "strokes" [
+    {"color" "green", "opacity" 1.0, "width" 2.0}]
+
   "res" {
     "x" 800,
     "y" 600
