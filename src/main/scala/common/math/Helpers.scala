@@ -34,4 +34,10 @@ object Helpers {
 		(x * s, y * s)
 	}
 
+	def diff(c1: (Double, Double), c2: (Double, Double)) = {
+		val (x1, y1) = c1
+		val (x2, y2) = c2
+		(x1 - x2, y1 - y2)
+	}
+
 }

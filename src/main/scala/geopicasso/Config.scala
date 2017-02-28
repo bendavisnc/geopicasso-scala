@@ -24,7 +24,6 @@ case class Config(
 	bg: String,
 	fills: List[(String, Double)],
 	strokes: List[(String, Double, Double)],
-	transformation: ShapeModel => ShapeModel,
 	shapes: List[Int],
 	xRes: Int,
 	yRes: Int
@@ -80,19 +79,9 @@ object Config {
 			r = jsonData.optDouble("r", default.r),
 			n = jsonData.optInt("n", default.n),
 			bg = jsonData.optString("bg", default.bg),
-//			transformation = default.transformation,
-			transformation =
-				Option(jsonData.optJSONArray("transformation"))
-					.map(
-						(jArr: JSONArray) => {
-							Transformation
-								.from(jArr.getString(0))
-								.withParameter(jArr.get(1).asInstanceOf[Any])
-						})
-					.getOrElse(default.transformation),
-			shapes = shs,
 			fills = fs,
 			strokes = ss,
+			shapes = shs,
 			xRes = rx,
 			yRes = ry
 		)
@@ -131,8 +120,15 @@ object Config {
 			}
 		).getOrElse(default.strokes)
 
-		val shs = Option(ednData.get("shapes").asInstanceOf[java.util.List[Int]]).map(
-		).getOrElse(default.strokes)
+		val shs = Option(ednData.get("shapes").asInstanceOf[java.util.List[Long]]).map(
+			arr => {
+				(arr.asScala.map(
+					l => {
+						l.toInt
+					}
+				)).toList
+			}
+		).getOrElse(default.shapes)
 
 		Config(
 			name = name,
@@ -143,16 +139,7 @@ object Config {
 			bg = ednData.asScala.getOrElse("bg", default.bg).asInstanceOf[String],
 			fills = fs,
 			strokes = ss,
-			transformation =
-//				Option(ednData.asScala.get("transformation").asInstanceOf[java.util.List[Any]])
-				ednData.asScala.get("transformation").asInstanceOf[Option[java.util.List[_]]]
-					.map(
-						(arr) => {
-							Transformation
-								.from(arr.get(0).asInstanceOf[String])
-								.withParameter(arr.get(1))
-						})
-					.getOrElse(default.transformation),
+			shapes = shs,
 			xRes = rx,
 			yRes = ry
 		)
@@ -167,11 +154,6 @@ object Config {
 			throw new Exception("Unrecognized config type.")
 	}
 
-//	def identity[A](a: =>A): A = {
-//		a
-//	}
-	def identity(shapeModel: ShapeModel): ShapeModel = shapeModel
-
 	val default =
 		Config(
 			name = "default",
@@ -182,7 +164,6 @@ object Config {
 			bg = "rgb(0, 0, 0)",
 			fills = ("black", 0.0) :: Nil,
 			strokes = ("black", 1.0, 1.0) :: Nil,
-			transformation = identity,
 			shapes = 0 :: Nil,
 			xRes = 1600,
 			yRes = 1200
